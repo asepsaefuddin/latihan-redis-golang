@@ -19,9 +19,11 @@ func ConnectRedis() {
 			MinVersion: tls.VersionTLS12,
 		},
 	})
-	ctx := context.Background()
-	_, err := RedisClient.Ping(ctx).Result()
+	// root context
+	// Root context: context dasar sebagai awal dari semua context
+	ctx := context.Background()              // context itu di butuhkan untuk lifecicle di golang
+	_, err := RedisClient.Ping(ctx).Result() // dignakan untuk mengecek koneksi
 	if err != nil {
-		panic("Koneksi ke Redis Gagal: " + err.Error())
+		panic("koneksi gagal ke redis")
 	}
 }
